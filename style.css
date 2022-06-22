@@ -1,0 +1,78 @@
+:root {
+  --primary-background: #fdfdff;
+  --secondary-background: #edede9;
+  --header-button: #466060;
+  --button: #6eb0c4;
+  --button-notread: #d00000;
+  --button-notread-hover: #ff3333;
+  --font: #100b00;
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
+  --spacing-xl: 40px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background: var(--primary-background);
+  margin-bottom: 10px;
+  color: var(--font);
+}
+
+/* ======= Header ======= */
+.header-container {
+  background: var(--primary-background);
+  box-shadow: rgba(0, 0, 0, 0.9) 0px 2px 5px;
+}
+.header-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-lg);
+}
+
+/* ======= Main ======= */
+.main-container {
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+.main-heading-container {
+  display: flex;
+  gap: var(--spacing-xl);
+}
+.main-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(120px, 1fr));
+  grid-template-rows: repeat(3, minmax(120px, 1fr));
+  border: 2px solid;
+}
+.grid-item {
+  border: 1px solid;
+}
+/* ======= Footer ======= */
+footer {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 10px;
+  width: 100%;
+}
