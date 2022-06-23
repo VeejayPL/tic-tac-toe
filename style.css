@@ -1,11 +1,11 @@
 :root {
   --primary-background: #fdfdff;
   --secondary-background: #edede9;
-  --header-button: #466060;
+  --field: #9ea7a7;
   --button: #6eb0c4;
-  --button-notread: #d00000;
   --button-notread-hover: #ff3333;
   --font: #100b00;
+  --font-winner: #d00000;
   --spacing-xs: 5px;
   --spacing-sm: 10px;
   --spacing-md: 15px;
@@ -24,6 +24,7 @@
 html {
   position: relative;
   min-height: 100%;
+  overflow: hidden;
 }
 body {
   font-size: 18px;
@@ -33,16 +34,56 @@ body {
   margin-bottom: 10px;
   color: var(--font);
 }
+/* ======= Utils ======= */
+
+.btn {
+  padding: var(--spacing-md);
+  border-radius: 8px;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  background: var(--button);
+  color: var(--primary-background);
+  cursor: pointer;
+  transition: all 300ms;
+}
+.main-btn .btn:hover {
+  background: var(--primary-background);
+  color: var(--button);
+}
+.modal-input {
+  padding: var(--spacing-md);
+  font-size: 25px;
+  border-radius: 8px;
+  outline: none;
+  border: 2px solid transparent;
+  transition: border 500ms;
+}
+.modal-input:focus {
+  border: 2px solid var(--font-winner);
+}
+.modal-input:focus + .modal-label {
+  top: 0;
+  font-size: 18px;
+  color: var(--font-winner);
+}
+.modal-input:not(:focus):not(:placeholder-shown) + .modal-label {
+  visibility: hidden;
+  top: 0;
+  font-size: 18px;
+  color: var(--font-winner);
+}
 
 /* ======= Header ======= */
 .header-container {
   background: var(--primary-background);
   box-shadow: rgba(0, 0, 0, 0.9) 0px 2px 5px;
+  width: 100%;
 }
 .header-heading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 56px;
+  letter-spacing: 3px;
+  text-align: center;
   padding: var(--spacing-lg);
 }
 
@@ -52,21 +93,42 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-xl);
+  justify-content: center;
+  gap: var(--spacing-lg);
 }
 .main-heading-container {
   display: flex;
   gap: var(--spacing-xl);
 }
-.main-grid {
+.main-heading-container,
+.info {
+  letter-spacing: 1px;
+}
+.main-btn {
+  display: flex;
+  gap: 30px;
+}
+.gameboard {
   display: grid;
-  grid-template-columns: repeat(3, minmax(120px, 1fr));
-  grid-template-rows: repeat(3, minmax(120px, 1fr));
+  grid-template-columns: repeat(3, 140px);
+  grid-template-rows: repeat(3, 140px);
   border: 2px solid;
 }
-.grid-item {
+.field {
   border: 1px solid;
+  background: var(--field);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  transition: background-color 300ms;
+  cursor: pointer;
+  user-select: none;
 }
+.field:hover {
+  background: var(--primary-background);
+}
+
 /* ======= Footer ======= */
 footer {
   text-align: center;
@@ -75,4 +137,90 @@ footer {
   left: 0;
   margin-bottom: 10px;
   width: 100%;
+}
+
+/* ======= Alert modal ======= */
+.modal-container {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.8);
+  animation: fade-in 200ms forwards;
+}
+.modal-container[close] {
+  animation: fade-out 500ms forwards;
+}
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-md);
+  background: var(--secondary-background);
+  margin: 15% auto;
+  height: 200px;
+  padding: var(--spacing-lg);
+  max-width: 300px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.9) 0px 2px 5px;
+  text-align: center;
+  transition: height 500ms;
+}
+.modal-label {
+  position: absolute;
+  top: 35px;
+  left: 20px;
+  padding: var(--spacing-sm);
+  font-size: 24px;
+  transition: font-size 500ms, top 500ms;
+}
+fieldset legend {
+  position: left;
+}
+.hidden {
+  visibility: hidden;
+}
+
+@media (max-width: 700px) {
+  :root {
+    --spacing-xl: 20px;
+  }
+  .main-heading-container {
+    font-size: 14px;
+  }
+  .gameboard {
+    grid-template-columns: repeat(3, 110px);
+    grid-template-rows: repeat(3, 110px);
+  }
+  .field {
+    font-size: 80px;
+  }
+  .main-btn .btn {
+    font-size: 18px;
+  }
+}
+@media (max-width: 370px) {
+  .header-heading {
+    font-size: 30px;
+  }
+  .main-heading-container {
+    font-size: 9px;
+  }
+  .gameboard {
+    grid-template-columns: repeat(3, 85px);
+    grid-template-rows: repeat(3, 85px);
+  }
+  .field {
+    font-size: 60px;
+  }
+  .main-btn .btn {
+    font-size: 16px;
+    padding: var(--spacing-xs);
+  }
 }

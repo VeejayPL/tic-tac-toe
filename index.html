@@ -12,24 +12,45 @@
     <header class="header-container">
       <h1 class="header-heading">Tic Tac Toe</h1>
     </header>
-    <main class="main-container">
-      <div class="main-heading-container">
-        <h2 class="main-heading_player">Player: 0</h2>
-        <h2 class="main-heading_player">Player: 0</h2>
+    <main class="main-container" id="main-container">
+      <div class="main-heading-container" id="main-heading-container">
+        <h2 class="main-heading_player" id="player1">VeejayPL: 0</h2>
+        <h2 class="main-heading_player" id="player2">Computer: 0</h2>
       </div>
-
-      <div class="main-grid">
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
+      <div class="main-info-container" id="info-container">
+        <h3 class="info" id="info">Player X turn</h3>
+      </div>
+      <div class="gameboard" id="gameboard">
+        <div class="field" data-index="0">X</div>
+        <div class="field" data-index="1">X</div>
+        <div class="field" data-index="2">X</div>
+        <div class="field" data-index="3">O</div>
+        <div class="field" data-index="4">O</div>
+        <div class="field" data-index="5">O</div>
+        <div class="field" data-index="6">X</div>
+        <div class="field" data-index="7">X</div>
+        <div class="field" data-index="8">X</div>
+      </div>
+      <div class="main-btn">
+        <button type="button" class="btn" id="start-btn">Start game</button>
+        <button type="button" class="btn" id="reset-btn">Reset game</button>
       </div>
     </main>
     <footer><p>Made by VeejayPL</p></footer>
+    <div class="modal-container" id="modal-container">
+      <div class="modal-content">
+        <input
+          type="text"
+          name="player1"
+          class="modal-input"
+          id="player1-name"
+          maxlength="10"
+          placeholder=" "
+          required
+        />
+        <label for="player1-name" class="modal-label">Enter your name</label>
+        <button type="button" class="btn" id="modal-btn">Start</button>
+      </div>
+    </div>
   </body>
 </html>
