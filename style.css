@@ -169,8 +169,7 @@ footer {
   max-width: 300px;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.9) 0px 2px 5px;
-  text-align: center;
-  transition: height 500ms;
+  animation: grow 0.5s;
 }
 .modal-label {
   position: absolute;
@@ -180,11 +179,34 @@ footer {
   font-size: 24px;
   transition: font-size 500ms, top 500ms;
 }
-fieldset legend {
-  position: left;
-}
 .hidden {
   visibility: hidden;
+}
+
+/* ======= Animation ======= */
+@keyframes grow {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @media (max-width: 700px) {
@@ -204,6 +226,8 @@ fieldset legend {
   .main-btn .btn {
     font-size: 18px;
   }
+  .modal-content {
+    margin: 70% auto;
 }
 @media (max-width: 370px) {
   .header-heading {
