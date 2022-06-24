@@ -81,7 +81,7 @@ body {
   width: 100%;
 }
 .header-heading {
-  font-size: 56px;
+  font-size: 48px;
   letter-spacing: 3px;
   text-align: center;
   padding: var(--spacing-lg);
@@ -98,7 +98,7 @@ body {
 }
 .main-heading-container {
   display: flex;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-lg);
 }
 .main-heading-container,
 .info {
@@ -110,8 +110,8 @@ body {
 }
 .gameboard {
   display: grid;
-  grid-template-columns: repeat(3, 140px);
-  grid-template-rows: repeat(3, 140px);
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(3, 120px);
   border: 2px solid;
 }
 .field {
@@ -120,7 +120,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 100px;
+  font-size: 90px;
   transition: background-color 300ms;
   cursor: pointer;
   user-select: none;
@@ -135,7 +135,7 @@ footer {
   position: absolute;
   bottom: 0;
   left: 0;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   width: 100%;
 }
 
@@ -217,8 +217,8 @@ footer {
     font-size: 14px;
   }
   .gameboard {
-    grid-template-columns: repeat(3, 110px);
-    grid-template-rows: repeat(3, 110px);
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
   }
   .field {
     font-size: 80px;
@@ -228,6 +228,7 @@ footer {
   }
   .modal-content {
     margin: 70% auto;
+  }
 }
 @media (max-width: 370px) {
   .header-heading {
