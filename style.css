@@ -191,7 +191,7 @@ footer {
 }
 .modal-label {
   position: absolute;
-  top: 45px;
+  top: 43px;
   left: 20px;
   padding: var(--spacing-sm);
   font-size: 24px;
