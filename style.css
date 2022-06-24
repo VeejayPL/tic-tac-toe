@@ -85,6 +85,7 @@ body {
 }
 .fieldset-input {
   margin-top: 5px;
+  outline: none;
 }
 
 /* ======= Header ======= */
