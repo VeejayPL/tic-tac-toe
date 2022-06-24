@@ -72,6 +72,10 @@ body {
 }
 .modal-input:not(:focus):not(:placeholder-shown) + .modal-label {
   visibility: hidden;
+  /* support for label to not move back to original position */
+  top: 0;
+  font-size: 18px;
+  color: var(--font-winner);
 }
 .modal-fieldset {
   border: none;
