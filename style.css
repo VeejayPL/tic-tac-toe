@@ -130,6 +130,9 @@ body {
 .field:focus {
   background: var(--primary-background);
 }
+.field.active {
+  background: var(--primary-background);
+}
 
 /* ======= Footer ======= */
 footer {
