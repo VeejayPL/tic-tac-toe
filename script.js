@@ -11,8 +11,15 @@ const resetButton = document
 
 function displayModal() {
   const modal = document.querySelector("#modal-container");
+  const closeBtn = document.querySelector("#modal-btn-close");
   modal.style.display = "block";
-
+  closeBtn.addEventListener("click", () => {
+    modal.setAttribute("close", "");
+    window.setTimeout(() => {
+      modal.style.display = "none";
+      modal.removeAttribute("close");
+    }, 600);
+  });
   window.addEventListener("click", (e) => {
     if (e.target == modal) {
       modal.setAttribute("close", "");

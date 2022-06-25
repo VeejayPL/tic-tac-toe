@@ -55,6 +55,18 @@ body {
   background: var(--primary-background);
   color: var(--button);
 }
+.btn-close {
+  align-self: flex-end;
+  border: none;
+  background: none;
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--button);
+  cursor: pointer;
+}
+.btn-close:hover {
+  text-transform: capitalize;
+}
 .modal-input {
   padding: var(--spacing-md);
   font-size: 25px;
