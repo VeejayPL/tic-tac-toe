@@ -20,7 +20,7 @@ function displayModal() {
       modal.removeAttribute("close");
     }, 600);
   });
-  window.addEventListener("click", (e) => {
+  document.addEventListener("click", (e) => {
     if (e.target == modal) {
       modal.setAttribute("close", "");
       window.setTimeout(() => {
