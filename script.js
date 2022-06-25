@@ -38,6 +38,6 @@ function renderBoard() {
 }
 function resetBoard() {
   const field = document.querySelectorAll(".field");
-  field.forEach(field, () => (field.innerText = ""));
+  field.forEach((field) => (field.innerText = ""));
 }
 renderBoard();
