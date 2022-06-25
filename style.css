@@ -129,11 +129,11 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 120px);
   grid-template-rows: repeat(3, 120px);
-  border: 2px solid;
+  /* border: 2px solid; */
 }
 .field {
   border: 1px solid;
-  background: var(--field);
+  background: var(--primary-background);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,14 +142,33 @@ body {
   cursor: pointer;
   user-select: none;
 }
-.field:hover {
-  background: var(--primary-background);
+.field:nth-of-type(1) {
+  border-top: none;
+  border-left: none;
 }
-.field:focus {
-  background: var(--primary-background);
+.field:nth-of-type(2) {
+  border-top: none;
 }
-.field.active {
-  background: var(--primary-background);
+.field:nth-of-type(3) {
+  border-top: none;
+  border-right: none;
+}
+.field:nth-of-type(4) {
+  border-left: none;
+}
+.field:nth-of-type(6) {
+  border-right: none;
+}
+.field:nth-of-type(7) {
+  border-left: none;
+  border-bottom: none;
+}
+.field:nth-of-type(8) {
+  border-bottom: none;
+}
+.field:nth-of-type(9) {
+  border-right: none;
+  border-bottom: none;
 }
 
 /* ======= Footer ======= */
