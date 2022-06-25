@@ -92,6 +92,7 @@ body {
   opacity: 0;
   animation: header 800ms ease-out forwards;
   display: inline-block;
+  transform-origin: 0 0;
 }
 .header-heading span:nth-of-type(1) {
   animation-delay: 0.5s;
@@ -129,7 +130,6 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 120px);
   grid-template-rows: repeat(3, 120px);
-  /* border: 2px solid; */
 }
 .field {
   border: 1px solid;
@@ -211,15 +211,8 @@ footer {
   max-width: 300px;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.9) 0px 2px 5px;
-  animation: grow 0.5s;
-}
-.modal-label {
-  position: absolute;
-  top: 43px;
-  left: 20px;
-  padding: var(--spacing-sm);
-  font-size: 24px;
-  transition: font-size 500ms, top 500ms;
+  animation: grow 0.2s;
+  transform-origin: top center;
 }
 .hidden {
   visibility: hidden;
