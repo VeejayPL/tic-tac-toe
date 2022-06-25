@@ -141,6 +141,7 @@ body {
   transition: background-color 300ms;
   cursor: pointer;
   user-select: none;
+  animation: fade-in 2s ease-out forwards;
 }
 .field:nth-of-type(1) {
   border-top: none;
@@ -215,7 +216,7 @@ footer {
   transform-origin: top center;
 }
 .hidden {
-  visibility: hidden;
+  opacity: 0;
 }
 
 /* ======= Animation ======= */

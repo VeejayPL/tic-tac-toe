@@ -1,6 +1,13 @@
+const Player = (name) => {
+  return { name };
+};
+
 const startGameBtn = document
   .querySelector("#start-btn")
   .addEventListener("click", displayModal);
+const resetButton = document
+  .querySelector("#reset-btn")
+  .addEventListener("click", resetBoard);
 
 function displayModal() {
   const modal = document.querySelector("#modal-container");
@@ -16,3 +23,21 @@ function displayModal() {
     }
   });
 }
+
+function renderBoard() {
+  for (let i = 0; i < 9; i++) {
+    const gameBoard = document.querySelector("#gameboard");
+    const field = document.createElement("div");
+    field.classList.add("field");
+    field.setAttribute("data-index", [i]);
+    field.addEventListener("click", (e) => {
+      e.target.innerText = "X";
+    });
+    gameBoard.appendChild(field);
+  }
+}
+function resetBoard() {
+  const field = document.querySelectorAll(".field");
+  field.forEach(field, () => (field.innerText = ""));
+}
+renderBoard();
