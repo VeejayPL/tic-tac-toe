@@ -1,5 +1,7 @@
-const Player = (name) => {
-  return { name };
+const Player = (name, marker) => {
+  const sayHello = () =>
+    console.log(`Hello! My name is ${name} and playing under ${marker}`);
+  return { name, marker, sayHello };
 };
 
 const startGameBtn = document
@@ -20,7 +22,7 @@ function displayModal() {
       modal.removeAttribute("close");
     }, 600);
   });
-  document.addEventListener("click", (e) => {
+  window.addEventListener("click", (e) => {
     if (e.target == modal) {
       modal.setAttribute("close", "");
       window.setTimeout(() => {
