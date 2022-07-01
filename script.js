@@ -1,7 +1,8 @@
+"use strict";
 const Player = (name, marker) => {
   const getName = () => name;
   const getMarker = () => marker;
-  const info = () => console.log(`${name}: ${marker}`);
+  const info = () => `${name}: ${marker}`;
   return { getName, getMarker, info };
 };
 
@@ -45,7 +46,7 @@ const displayController = (() => {
     document.querySelector(selector).innerText = message;
   };
 
-  return { writeToDom };
+  return { writeToDom, toggleModal };
 })();
 
 const gameboardDisplay = (() => {
@@ -63,6 +64,7 @@ const gameboardDisplay = (() => {
     }
   };
   const clear = () => {
+    if (document.querySelector("#gameboard").innerHTML === "") return;
     for (let i = 0; i < 9; i++) {
       const gameBoard = document.querySelector("#gameboard");
       const field = document.querySelector(".field");
@@ -79,8 +81,49 @@ const gameboardDisplay = (() => {
 
 const modal = (() => {
   const startBtn = document.querySelector("#modal-btn");
+
+  startBtn.addEventListener("click", (e) => {
+    getPlayer1Name();
+    getPlayer1Marker();
+    getPlayer2Name();
+    getPlayer2Marker();
+    displayController.toggleModal();
+    gameboardDisplay.render();
+  });
+
+  const getPlayer1Name = () => {
+    const player1Name = document.querySelector("#player1-name").value;
+    return player1Name;
+  };
+
+  const getPlayer1Marker = () => {
+    const player1Marker = document.querySelector(
+      "input[name='mark']:checked"
+    ).value;
+    return player1Marker;
+  };
+
+  const getPlayer2Name = () => {
+    const player2Name = "Computer";
+    return player2Name;
+  };
+
+  const getPlayer2Marker = () => {
+    const player1Marker = document.querySelector(
+      "input[name='mark']:checked"
+    ).value;
+    const player2Marker = player1Marker === "X" ? "O" : "X";
+    return player2Marker;
+  };
+
+  return { getPlayer1Name, getPlayer1Marker, getPlayer2Name, getPlayer2Marker };
 })();
 
-const playerCreator = (() => {})();
+const playerCreator = (() => {
+  // const name = (name) => modal.getPlayer1Name();
+  // const mark = modal.getPlayer1Marker();
+  // console.log(name);
+  // return { name, mark };
+})();
 
 const gameboard = (() => {})();
