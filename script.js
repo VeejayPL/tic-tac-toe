@@ -3,6 +3,7 @@ const Player = (name, marker) => {
   const getName = () => name;
   const getMarker = () => marker;
   const info = () => `${name}: ${marker}`;
+
   return { getName, getMarker, info };
 };
 
@@ -87,9 +88,17 @@ const modal = (() => {
     getPlayer1Marker();
     getPlayer2Name();
     getPlayer2Marker();
+    getPlayer1();
+    getPlayer2();
+    displayController.writeToDom("#player1", getPlayer1().info());
+    displayController.writeToDom("#player2", getPlayer2().info());
     displayController.toggleModal();
     gameboardDisplay.render();
   });
+
+  const getPlayer1 = () => Player(getPlayer1Name(), getPlayer1Marker());
+
+  const getPlayer2 = () => Player(getPlayer2Name(), getPlayer2Marker());
 
   const getPlayer1Name = () => {
     const player1Name = document.querySelector("#player1-name").value;
@@ -116,14 +125,16 @@ const modal = (() => {
     return player2Marker;
   };
 
-  return { getPlayer1Name, getPlayer1Marker, getPlayer2Name, getPlayer2Marker };
+  return { getPlayer1, getPlayer2 };
 })();
 
-const playerCreator = (() => {
-  // const name = (name) => modal.getPlayer1Name();
-  // const mark = modal.getPlayer1Marker();
-  // console.log(name);
-  // return { name, mark };
-})();
+// const createPlayer = (() => {
+//   const player1 = Player(modal.getPlayer1Name(), modal.getPlayer1Marker());
+//   const player2 = Player(modal.getPlayer2Name(), modal.getPlayer2Marker());
+//   displayController.writeToDom("#player1", player1.info());
+//   displayController.writeToDom("#player2", player2.info());
+
+//   return { player1, player2 };
+// })();
 
 const gameboard = (() => {})();
