@@ -18,7 +18,12 @@ const displayController = (() => {
   });
 
   closeBtn.addEventListener("click", (e) => toggleModal());
-  resetButton.addEventListener("click", (e) => gameboardDisplay.reset());
+  resetButton.addEventListener("click", (e) => {
+    writeToDom("#info", `${modal.getPlayer1().getName()}'s turn`);
+    gameboard.reset();
+    gameController.reset();
+    gameboardDisplay.update();
+  });
 
   window.addEventListener("click", (e) => {
     if (e.target == modal) {
@@ -50,33 +55,38 @@ const displayController = (() => {
 })();
 
 const gameboardDisplay = (() => {
+  const board = document.querySelector("#gameboard");
+
   const render = () => {
-    if (document.querySelector("#gameboard").innerHTML !== "") return;
+    if (board.innerHTML !== "") return;
     for (let i = 0; i < 9; i++) {
-      const gameBoard = document.querySelector("#gameboard");
       const field = document.createElement("div");
       field.classList.add("field");
       field.setAttribute("data-index", [i]);
       field.addEventListener("click", (e) => {
-        e.target.innerText = "X";
+        if (gameController.getIsOver() || e.target.textContent !== "") return;
+        gameController.playRound(parseInt(e.target.dataset.index));
+        update();
       });
-      gameBoard.appendChild(field);
+      board.appendChild(field);
     }
   };
   const clear = () => {
-    if (document.querySelector("#gameboard").innerHTML === "") return;
+    if (board.innerHTML === "") return;
     for (let i = 0; i < 9; i++) {
-      const gameBoard = document.querySelector("#gameboard");
       const field = document.querySelector(".field");
-      gameBoard.removeChild(field);
+      board.removeChild(field);
     }
   };
-  const reset = () => {
-    const field = document.querySelectorAll(".field");
-    field.forEach((field) => (field.innerText = ""));
+  const update = () => {
+    if (board.innerHTML === "") return;
+    for (let i = 0; i < 9; i++) {
+      const fields = document.querySelectorAll(".field");
+      fields[i].textContent = gameboard.getField(i);
+    }
   };
 
-  return { render, reset, clear };
+  return { render, clear, update };
 })();
 
 const modal = (() => {
@@ -84,6 +94,8 @@ const modal = (() => {
 
   startBtn.addEventListener("click", (e) => {
     gameboardDisplay.clear();
+    gameboard.reset();
+    gameController.reset();
     getPlayer1Name();
     getPlayer1Marker();
     getPlayer2Name();
@@ -92,6 +104,7 @@ const modal = (() => {
     getPlayer2();
     displayController.writeToDom("#player1", getPlayer1().info());
     displayController.writeToDom("#player2", getPlayer2().info());
+    displayController.writeToDom("#info", `${getPlayer1().getName()}'s turn`);
     displayController.toggleModal();
     gameboardDisplay.render();
   });
@@ -128,4 +141,87 @@ const modal = (() => {
   return { getPlayer1, getPlayer2 };
 })();
 
-const gameboard = (() => {})();
+const gameboard = (() => {
+  const board = ["", "", "", "", "", "", "", "", ""];
+
+  const setField = (index, marker) => {
+    if (index > board.length) return;
+    board[index] = marker;
+  };
+  const getField = (index) => {
+    if (index > board.length) return;
+    return board[index];
+  };
+  const reset = () => {
+    for (let i = 0; i < board.length; i++) {
+      board[i] = "";
+    }
+  };
+
+  return { setField, getField, reset };
+})();
+
+const gameController = (() => {
+  let round = 1;
+  let isOver = false;
+  const playRound = (index) => {
+    gameboard.setField(index, getCurrentPlayerMarker());
+    if (checkWinner(index)) {
+      displayController.writeToDom(
+        "#info",
+        `${getCurrentPlayerName()} has won`
+      );
+      isOver = true;
+      return;
+    }
+    if (round === 9) {
+      displayController.writeToDom("#info", "It's a draw");
+      isOver = true;
+      return;
+    }
+    round++;
+    displayController.writeToDom("#info", `${getCurrentPlayerName()}'s turn`);
+  };
+
+  const getCurrentPlayerName = () =>
+    round % 2 === 1
+      ? modal.getPlayer1().getName()
+      : modal.getPlayer2().getName();
+
+  const getCurrentPlayerMarker = () =>
+    round % 2 === 1
+      ? modal.getPlayer1().getMarker()
+      : modal.getPlayer2().getMarker();
+
+  const checkWinner = (index) => {
+    const winConditions = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    return winConditions
+      .filter((combination) => combination.includes(index))
+      .some((possibleCombination) =>
+        possibleCombination.every(
+          (index) => gameboard.getField(index) === getCurrentPlayerMarker()
+        )
+      );
+  };
+
+  const getIsOver = () => {
+    return isOver;
+  };
+
+  const reset = () => {
+    round = 1;
+    isOver = false;
+  };
+
+  return { playRound, getIsOver, reset };
+})();
