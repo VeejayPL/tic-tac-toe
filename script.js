@@ -18,8 +18,8 @@ const displayController = (() => {
   });
 
   closeBtn.addEventListener("click", (e) => toggleModal());
+
   resetButton.addEventListener("click", (e) => {
-    writeToDom("#info", `${modal.getPlayer1().getName()}'s turn`);
     gameboard.reset();
     gameController.reset();
     gameboardDisplay.update();
@@ -157,6 +157,10 @@ const gameboard = (() => {
     for (let i = 0; i < board.length; i++) {
       board[i] = "";
     }
+    displayController.writeToDom(
+      "#info",
+      `${modal.getPlayer1().getName()}'s turn`
+    );
   };
 
   return { setField, getField, reset };
