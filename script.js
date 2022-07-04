@@ -109,7 +109,8 @@ const modal = (() => {
     gameboardDisplay.render();
   });
 
-  const getPlayer1 = () => Player(getPlayer1Name(), getPlayer1Marker());
+  const getPlayer1 = () =>
+    Player(getPlayer1Name() || "Player", getPlayer1Marker());
 
   const getPlayer2 = () => Player(getPlayer2Name(), getPlayer2Marker());
 
