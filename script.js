@@ -14,7 +14,6 @@ const displayController = (() => {
   const closeBtn = document.querySelector("#modal-btn-close");
 
   newGameBtn.addEventListener("click", (e) => {
-    gameboardDisplay.clear();
     toggleModal();
   });
 
@@ -84,6 +83,7 @@ const modal = (() => {
   const startBtn = document.querySelector("#modal-btn");
 
   startBtn.addEventListener("click", (e) => {
+    gameboardDisplay.clear();
     getPlayer1Name();
     getPlayer1Marker();
     getPlayer2Name();
@@ -127,14 +127,5 @@ const modal = (() => {
 
   return { getPlayer1, getPlayer2 };
 })();
-
-// const createPlayer = (() => {
-//   const player1 = Player(modal.getPlayer1Name(), modal.getPlayer1Marker());
-//   const player2 = Player(modal.getPlayer2Name(), modal.getPlayer2Marker());
-//   displayController.writeToDom("#player1", player1.info());
-//   displayController.writeToDom("#player2", player2.info());
-
-//   return { player1, player2 };
-// })();
 
 const gameboard = (() => {})();
